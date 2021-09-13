@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularapp-247b2": {
+      "hosting": {
+        "ventasApp": [
+          "angularapp-247b2"
+        ]
+      }
+    }
+  }
+}
