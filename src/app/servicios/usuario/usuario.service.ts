@@ -6,14 +6,41 @@ import { Usuario } from 'src/app/interfaces/usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
+  
+  coleccion_usuarios: string = 'usuarios';
+  caleccion_roles: string = 'roles';
+  constructor(private afs: AngularFirestore) {}
+  
+  
+  /*  acceder(usuaurio:Usuario){
+    this.afs.collection(
+          this.coleccion_usuarios, (ref) => 
+          ref.where('correo', '==',usuaurio.correo)
+          .where('contrasena', '==', usuaurio.contrasena)
+        ).valueChanges();
+  }*/
 
-  coleccion_usuarios:string = 'usuarios'
-  constructor(private afs:AngularFirestore) { }
-
+  listarRoles() {
+    return this.afs.collection(this.caleccion_roles).valueChanges();
+    //throw new Error('Method not implemented.');
+  }
   listarUsuarios(){
     return this.afs.collection(this.coleccion_usuarios).valueChanges()
   }  
 
+
+  acceder(usuario: Usuario) {
+    return this.afs
+      .collection(this.coleccion_usuarios, (ref) =>
+        ref
+          .where('correo', '==', usuario.correo)
+          .where('contrasena', '==', usuario.contrasena)
+          .limit(1)
+      )
+      .valueChanges();
+  }
+
+  
   //Metodo que accede al documento por el ID y setea un objeto en ese documento
   agregarUsuario(usuario:Usuario){
 
@@ -35,17 +62,20 @@ export class UsuarioService {
   // }
    
 
-    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id).set(usuario)
+    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id)
+    .set(usuario)
   }
 
   //Metodo que accede al documento por el ID y actualiza todo el objeto por el nuevo objeto
   editarUsuario(usuario:Usuario){
-    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id).update(usuario)
+    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id)
+    .update(usuario)
   }
 
   //Metodo que elimina el documento con el id proporcionado en la colección
   eliminarUsuario(usuario_id){
-    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario_id).delete()
+    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario_id)
+    .delete()
   }
 
   agregarCodigoId(usuario:Usuario){

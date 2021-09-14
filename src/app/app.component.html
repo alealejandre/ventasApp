@@ -2,19 +2,31 @@
 <!--<div class="d-flex"></div>-->
 <!--<app-registrar></app-registrar>-->
 <!--<div class="d-flex justify-content-center"></div>-->
-<div class="d-flex justify-content-center">
-    <h1>Sistema de venta de productos</h1>
-  </div>
-  <div class="d-flex flex-row-reverse">
-    <div class="p-2">
-      <button class="btn btn-primary" [routerLink]="['/login']">Logear</button>
-      
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-center">
+      <h1>Sistema de venta de productos</h1>
     </div>
-    <div class="p-2">
-      <button class="btn btn-secondary" [routerLink]="['/register/']">
-        Registrar
-      </button>
+    <div *ngIf="usuario && usuario.usuario_id" class="d-flex flex-row-reverse">
+      <button class="btn btn-danger" [routerLink]="['/']">Cerrar Sesión</button>
+    </div>
+    <div
+      *ngIf="!(usuario && usuario.usuario_id)"
+      class="d-flex flex-row-reverse"
+    >
+      <div class="p-2">
+        <button class="btn btn-primary" [routerLink]="['/login']">
+          Logear
+        </button>
+      </div>
+      <div class="p-2">
+        <button class="btn btn-secondary" [routerLink]="['/register/']">
+          Registrar
+        </button>
+      </div>
     </div>
   </div>
-  <router-outlet></router-outlet>
-  
+  <div class="card-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
