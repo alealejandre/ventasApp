@@ -115,7 +115,7 @@ export class AgregarVentaComponent implements OnInit, AfterViewInit {
 
   generarVenta() {
     let usuario_registro: Usuario = this.obtenerUsuario();
-    alert("1631561609981aal")
+    //alert("1631561609981aal")
     let nueva_venta: Venta = {      
       //usuario_id: usuario_registro.usuario_id,
       usuario_id: "1631561609981aal",
