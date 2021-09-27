@@ -1,0 +1,18 @@
+.display {
+  background-color: black;
+  color: chartreuse;
+  min-height: 100px;
+  font-size: xx-large;
+}
+
+.vertical-center {
+  min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+
+  display: flex;
+  align-items: center;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+

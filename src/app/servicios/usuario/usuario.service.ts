@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,25 +10,20 @@ export class UsuarioService {
   
   coleccion_usuarios: string = 'usuarios';
   caleccion_roles: string = 'roles';
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore, private httpClient: HttpClient) {
+    
+  }
   
   
-  /*  acceder(usuaurio:Usuario){
+  /*  
+    By AleAlejandre
+    acceder(usuaurio:Usuario){
     this.afs.collection(
           this.coleccion_usuarios, (ref) => 
           ref.where('correo', '==',usuaurio.correo)
           .where('contrasena', '==', usuaurio.contrasena)
         ).valueChanges();
   }*/
-
-  listarRoles() {
-    return this.afs.collection(this.caleccion_roles).valueChanges();
-    //throw new Error('Method not implemented.');
-  }
-  listarUsuarios(){
-    return this.afs.collection(this.coleccion_usuarios).valueChanges()
-  }  
-
 
   acceder(usuario: Usuario) {
     return this.afs
@@ -40,19 +36,20 @@ export class UsuarioService {
       .valueChanges();
   }
 
-  
-  //Metodo que accede al documento por el ID y setea un objeto en ese documento
-  agregarUsuario(usuario:Usuario){
 
-  // {
-  //   nombre: 'Flavio',
-  //   apellido_paterno: 'Ramirez',
-  //   apellido_materno: 'Gonzales',
-  //   ....
-  // }
+  listarRoles() {
+    return this.afs.collection(this.caleccion_roles).valueChanges();
+    //throw new Error('Method not implemented.');
+  }
 
-    usuario.usuario_id = this.agregarCodigoId(usuario)
+
+  listarUsuarios(){
+    return this.afs.collection(this.coleccion_usuarios).valueChanges()
+  }  
+
+   
   
+  //Metodo que accede al documento por el ID y setea un objeto en ese documento   
   // {
   //   usuario_id: 165475512FRG
   //   nombre: 'Flavio',
@@ -60,16 +57,14 @@ export class UsuarioService {
   //   apellido_materno: 'Gonzales',
   //   ....
   // }
-   
-
-    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id)
-    .set(usuario)
+  agregarUsuario(usuario:Usuario){        
+        usuario.usuario_id = this.agregarCodigoId(usuario)
+       return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id).set(usuario)
   }
 
   //Metodo que accede al documento por el ID y actualiza todo el objeto por el nuevo objeto
   editarUsuario(usuario:Usuario){
-    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id)
-    .update(usuario)
+    return  this.afs.doc(this.coleccion_usuarios+'/'+ usuario.usuario_id).update(usuario)
   }
 
   //Metodo que elimina el documento con el id proporcionado en la colección
@@ -84,5 +79,11 @@ export class UsuarioService {
    
 
     return fecha_actual_ms + letra_nombre
+  }
+
+  //Consumiendo un servicio de tipo GET desde https://gorest.co.in/public/v1/users
+   url: string = 'https://gorest.co.in/public/v1/users';
+  listarUsuarioRest() {
+    return this.httpClient.get(this.url);
   }
 }

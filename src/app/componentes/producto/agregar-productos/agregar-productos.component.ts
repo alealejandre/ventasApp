@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {  AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/servicios/producto/producto.service';
 import { NgForm } from '@angular/forms';
 import { Producto } from 'src/app/interfaces/producto';
-
+import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
   selector: 'app-agregar-productos',
@@ -10,6 +10,8 @@ import { Producto } from 'src/app/interfaces/producto';
   styleUrls: ['./agregar-productos.component.css']
 })
 export class AgregarProductosComponent implements OnInit {
+  @Input() public nombre: Usuario = {};
+  
   producto: Producto;
   constructor(private productoService:ProductoService) { 
         this.inicializarVariables();
@@ -35,9 +37,12 @@ export class AgregarProductosComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  ngAfterViewInit() {    
+    this.producto.nombre = this.nombre.nombres;
+  }
+
   limpiarCampos() {}
   inicializarVariables() {
     this.producto = {};
   }
- 
-}
+ }

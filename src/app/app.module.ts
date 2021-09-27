@@ -14,7 +14,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { ListarProductosComponent } from './componentes/producto/listar-productos/listar-productos.component';
+import { AgregarVentaComponent } from './componentes/venta/agregar-ventas/agregar-ventas.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ListarVentasComponent } from './componentes/venta/listar-ventas/listar-ventas.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,11 @@ import { ListarProductosComponent } from './componentes/producto/listar-producto
     LoginComponent,
     RegistrarComponent,
     AgregarProductosComponent,
-    ListarProductosComponent
+    ListarProductosComponent,
+    AgregarProductosComponent,
+    AgregarVentaComponent,
+    ListarVentasComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,8 @@ import { ListarProductosComponent } from './componentes/producto/listar-producto
     AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
     //FontAwesomeModule
     
 
