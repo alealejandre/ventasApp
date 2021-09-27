@@ -123,7 +123,7 @@ export class AgregarVentaComponent implements OnInit, AfterViewInit {
       fecha_registro: new Date(),
       total: this.monto_total,
     };
-     alert (nueva_venta)
+     //alert (nueva_venta)
     this.ventaService
       .registrarVenta(nueva_venta)
       .then(() => {
