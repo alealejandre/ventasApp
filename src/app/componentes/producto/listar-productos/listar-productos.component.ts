@@ -10,7 +10,7 @@ import { ProductoService } from 'src/app/servicios/producto/producto.service';
 })
 export class ListarProductosComponent implements OnInit {
   lista_productos: Producto[];
-  imagenSeleccionada: string;
+  imagenSeleccionada: string;z
 
   constructor( private ngbModal: NgbModal,private productoService: ProductoService ) { 
     this.inicializarVariables();

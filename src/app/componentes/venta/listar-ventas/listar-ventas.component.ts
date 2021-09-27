@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Producto } from 'src/app/interfaces/producto';
 import { Venta } from 'src/app/interfaces/venta';
 import { VentaService } from 'src/app/servicios/venta/venta.service';
 
@@ -12,24 +11,26 @@ import { VentaService } from 'src/app/servicios/venta/venta.service';
 export class ListarVentasComponent implements OnInit {
 
   lista_ventas: Venta[];  
-  imagenSeleccionada: string;
+  //imagenSeleccionada: string;
+  venta_seleccionada: Venta;
   //ventaService: any;
 
-  constructor( private ngbModal: NgbModal,private ventaService: VentaService ) { 
+public isCollapsed = true;
+  constructor(private ngbModal: NgbModal, private ventaService: VentaService) {
     this.inicializarVariables();
   }
 
   ngOnInit(): void {
     this.listarVentas();
   }
-  listarVentas() {    
-    
+  
+  
+  listarVentas() {        
      this.ventaService.listarVentas().subscribe((ventas) => {
       this.lista_ventas = ventas;
+      //console.log(this.lista_ventas[0]);
     });
   }
-
-
   
   
   abrirModalAgregar(modalAgregar) {
@@ -45,8 +46,25 @@ export class ListarVentasComponent implements OnInit {
         (reason) => {}
       );
   }
-  
-  abrirModalImagen(modalImagen, url_imagen) {
+
+
+  abrirModalDetalles(modalDetalles, venta) {
+    this.venta_seleccionada = venta;
+    this.ngbModal
+      .open(modalDetalles, {
+        centered: true,
+        size: 'lg',
+        scrollable: true,
+        backdrop: 'static',
+      })
+      .result.then(
+        (result) => {},
+        (reason) => {}
+      );
+  }
+
+
+  /*abrirModalImagen(modalImagen, url_imagen) {
     this.imagenSeleccionada = url_imagen;
     this.ngbModal
       .open(modalImagen, {
@@ -60,9 +78,11 @@ export class ListarVentasComponent implements OnInit {
         (reason) => {}
       );
   }
+  */
   inicializarVariables() {
     this.lista_ventas = [];    
-    this.imagenSeleccionada = '';
+    //this.imagenSeleccionada = '';
+    this.venta_seleccionada = {};
   }
   
 }

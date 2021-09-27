@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center">
+    <div *ngFor="let menu of lista_menus" class="p-2" style="min-width: 15rem">
+      <div class="card">
+        <div class="card-header text-center">Menu:</div>
+        <div class="card-body text-center">
+          {{ menu.nombre }}
+        </div>
+        <div class="card-footer text-center">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="navegarMenu(menu)"
+          >
+            <i class="fa fa-sign-in"></i>
+            Ir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

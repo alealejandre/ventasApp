@@ -22,6 +22,7 @@ export class AgregarVentaComponent implements OnInit, AfterViewInit {
   producto_seleccionado: any;
   monto_total: number;
   input_busqueda: string;
+  nombre_a_pasar:string
   constructor(
     private productoService: ProductoService,
     private ventaService: VentaService,
@@ -117,8 +118,8 @@ export class AgregarVentaComponent implements OnInit, AfterViewInit {
     let usuario_registro: Usuario = this.obtenerUsuario();
     //alert("1631561609981aal")
     let nueva_venta: Venta = {      
-      //usuario_id: usuario_registro.usuario_id,
-      usuario_id: "1631561609981aal",
+      usuario_id: usuario_registro.usuario_id,
+      //usuario_id: "1631561609981aal",
       detalles: this.lista_productos_seleccionados,
       fecha_registro: new Date(),
       total: this.monto_total,

@@ -18,6 +18,8 @@ import { AgregarVentaComponent } from './componentes/venta/agregar-ventas/agrega
 
 import { HttpClientModule } from '@angular/common/http';
 import { ListarVentasComponent } from './componentes/venta/listar-ventas/listar-ventas.component';
+import { MenuComponent } from './componentes/menu/menu.component';
+import { FbdatePipe } from './pipes/fbdate.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { ListarVentasComponent } from './componentes/venta/listar-ventas/listar-
     ListarProductosComponent,
     AgregarProductosComponent,
     AgregarVentaComponent,
-    ListarVentasComponent
+    ListarVentasComponent,
+    MenuComponent,
+    FbdatePipe
+    
     
   ],
   imports: [

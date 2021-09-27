@@ -37,8 +37,11 @@
         </div>
       </div>
       <div class="card-footer">
+        <button class="btn btn-outline-warning" [routerLink]="['../register']">
+          Registrar
+        </button>
         <button
-          class="btn btn-success"
+          class="btn btn-success ml-3"
           (click)="ingresar(frmAcceso)"
           [disabled]="frmAcceso.invalid"
         >

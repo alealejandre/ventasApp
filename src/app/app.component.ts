@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from './interfaces/usuario';
+import { UsuarioService } from './servicios/usuario/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,20 @@ import { Usuario } from './interfaces/usuario';
 })
 export class AppComponent {
   activeSession: boolean;
-  usuario: Usuario = {};
+  //usuario: Usuario = {};
+  nombre_a_pasar:string='Galleta de atún';
 
   //title = 'ventasApp';
   //14/09/2021
-  constructor() { 
-    this.usuario = JSON.parse(window.localStorage.getItem('VENTAS_APP_USER'));
+  constructor(private router: Router, private usuarioService: UsuarioService) { 
+    //this.usuario = JSON.parse(window.localStorage.getItem('VENTAS_APP_USER'));
+  }
+  logOut() {
+    this.usuarioService.logOut();
+  }
+
+  checkLogin() {
+    return this.usuarioService.checkLoging();
   }
 
 }
