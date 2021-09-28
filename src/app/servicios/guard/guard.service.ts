@@ -16,6 +16,7 @@ export class GuardService implements CanActivate {
       window.localStorage.getItem('VENTAS_APP_USER')
     );
 
+    console.log('this.tieneRol(usuario, ruta)', this.tieneRol(usuario, ruta));
     if (usuario && this.tieneRol(usuario, ruta)) {
       return true;
     } else {
@@ -24,7 +25,8 @@ export class GuardService implements CanActivate {
   }
 
   tieneRol(usuario, ruta): boolean {
-    if (ruta === './menu') {
+    console.log("ruta", ruta);
+    if (ruta === '/menu') {
       return true;
     }
     let existe_rol = usuario.roles.find((rol) => rol.ruta == ruta);

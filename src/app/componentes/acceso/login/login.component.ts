@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Imprimiendo VENTAS_APP_USER:", window.localStorage.getItem('VENTAS_APP_USER'));
     if (window.localStorage.getItem('VENTAS_APP_USER')) {
       this.router.navigate(['../menu']);
     }
